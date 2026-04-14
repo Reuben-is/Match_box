@@ -39,7 +39,7 @@ const SETTINGS = {
     title1:  "Welcome",
     title2:  "to",
     titleEm: "Matchbox",
-    title3:  "-by Reuben",
+    title3:  "by Reuben",
     body:    "Each piece is made by hand, one at a time, in close collaboration with the person who will wear it. No two are the same.",
     ctaBtn:  "Start a commission",
     ghostBtn:"See the work →",
@@ -49,45 +49,64 @@ const SETTINGS = {
   about: {
     label:   "About",
     title1:  "I'm Reuben.",
-    titleEm: "I'm make things.",
-    para1: "Matchbox is a one-person studio based in Melbourne. I work in sterling silver,vwith natural and lab gemstones — sapphires, opals, tourmalines, rubys — hand picked for their charm, from local markets and suppliers.",
-    para2: "My work is inspired by the things that pull deep on my sense of wonder: the ocean, the night sky. as an industrial design graduate I'm particularly interested in processes and materials.",
+    titleEm: "I make things.",
+    para1: "Matchbox is a one-person studio based in Melbourne. I work in sterling silver, with natural and lab gemstones — sapphires, opals, tourmalines, rubies — hand picked for their charm, from local markets and suppliers.",
+    para2: "My work is inspired by the things that pull deep on my sense of wonder: the ocean, the night sky. As an industrial design graduate I'm particularly interested in processes and materials.",
     para3: "Every commission is different. I work closely with each person through the whole process — from the first idea to the finished piece in your hands.",
   },
 
   /* --- GALLERY CAROUSEL ---
-     Add as many items as you like — the carousel handles any number.
-     src: use a built-in key (G1–G6, HERO1–HERO4, ABOUT)
-          or any image URL: "https://example.com/photo.jpg"
-     label: piece name shown below the image
-     sub: optional short description shown in smaller text */
+     Add as many items as you like.
+     src: built-in key (G1–G6, HERO1–HERO4, ABOUT) or any image URL.
+     label: piece name. sub: materials, shown smaller. */
   gallery: {
     sectionTitle: "Selected work",
     sectionSub:   "All pieces commission only",
-    visibleCount: 2.4,   // how many slides visible at once (decimals show a peek)
+    visibleCount: 2.4,
     items: [
-      { label: "Black obsidian pendant",  sub: "Sterling silver · obsidian",       src: "G1" },
-      { label: "Sapphire pendant",        sub: "Sterling silver · sapphire",       src: "G2" },
-      { label: "Signet band",             sub: "Sterling silver",                  src: "G3" },
-      { label: "Tourmaline necklace",     sub: "Sterling silver · tourmaline",     src: "G4" },
-      { label: "Wave band",               sub: "Sterling silver",                  src: "G5" },
-      { label: "Blue apatite, bezel set", sub: "Sterling silver · blue apatite",  src: "G6" },
-      { label: "Garnet pendant",          sub: "Sterling silver · garnet",         src: "G4" },
-      { label: "Deep blue sapphire",      sub: "Sterling silver · sapphire",       src: "G2" },
+      { label: "Black obsidian pendant",  sub: "Sterling silver · obsidian",      src: "G1" },
+      { label: "Sapphire pendant",        sub: "Sterling silver · sapphire",      src: "G2" },
+      { label: "Signet band",             sub: "Sterling silver",                 src: "G3" },
+      { label: "Tourmaline necklace",     sub: "Sterling silver · tourmaline",    src: "G4" },
+      { label: "Wave band",               sub: "Sterling silver",                 src: "G5" },
+      { label: "Blue apatite, bezel set", sub: "Sterling silver · blue apatite", src: "G6" },
+      { label: "Garnet pendant",          sub: "Sterling silver · garnet",        src: "G4" },
+      { label: "Deep blue sapphire",      sub: "Sterling silver · sapphire",      src: "G2" },
     ]
   },
 
-  /* --- PROCESS STEPS --- */
+  /* --- PROCESS ---
+     Each step has: title, body, and src (image key or URL).
+     Use your own photos to show each stage of making. */
   process: {
     label:    "How it works",
-    title1:   "The commission",
-    titleEm:  "process",
-    subtitle: "I don't take orders — I have conversations. Here's what working together looks like.",
+    title:    "The commission process",
+    subtitle: "I don't take orders — I have conversations.",
     steps: [
-      { title: "Reach out",   body: "Send me a DM on Instagram. Tell me what you're thinking — even loosely. There are no wrong answers at this stage." },
-      { title: "We talk",     body: "We work through the idea together — materials, stones, form, meaning. I ask a lot of questions. This part matters." },
-      { title: "I make it",   body: "I'll share progress as I go. You're part of the process, not just waiting at the end of it." },
-      { title: "It's yours",  body: "Delivered in a matchbox. Something made specifically for you, by hand, that didn't exist before." },
+      {
+        num:   "01",
+        title: "Reach out",
+        body:  "Send me a DM on Instagram. Tell me what you're thinking — even loosely. There are no wrong answers at this stage.",
+        src:   "G5",
+      },
+      {
+        num:   "02",
+        title: "We talk",
+        body:  "We work through the idea together — materials, stones, form, meaning. I ask a lot of questions. This part matters.",
+        src:   "G4",
+      },
+      {
+        num:   "03",
+        title: "I make it",
+        body:  "I'll share progress as I go. You're part of the process, not just waiting at the end of it.",
+        src:   "G3",
+      },
+      {
+        num:   "04",
+        title: "It's yours",
+        body:  "Delivered in a matchbox. Something made specifically for you, by hand, that didn't exist before.",
+        src:   "ABOUT",
+      },
     ]
   },
 
@@ -101,9 +120,7 @@ const SETTINGS = {
     btn:     "Message me on Instagram",
   },
 
-  footer: {
-    copy: "© 2026 Matchbox Studio",
-  },
+  footer: { copy: "© 2026 Matchbox Studio" },
 };
 
 /* ============================================================
@@ -162,9 +179,9 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 .about-body{font-size:14px;line-height:1.9;margin-bottom:40px;}
 .about-body p+p{margin-top:16px;}
 
-/* GALLERY / CAROUSEL */
-.work{padding:100px 0 100px;}
-.work-header{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:56px;padding:0 64px;border-bottom:0.5px solid rgba(200,205,208,0.08);padding-bottom:24px;}
+/* GALLERY — shorter height so arrows are always in view */
+.work{padding:80px 0 0;}
+.work-header{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:40px;padding:0 64px 20px;border-bottom:0.5px solid rgba(200,205,208,0.08);}
 .work-title{font-family:'Playfair Display',serif;font-size:40px;font-weight:400;}
 .work-sub{font-size:11px;letter-spacing:0.18em;text-transform:uppercase;}
 
@@ -172,96 +189,115 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 .carousel-track-outer{overflow:hidden;padding:0 64px;cursor:grab;}
 .carousel-track-outer:active{cursor:grabbing;}
 .carousel-track{display:flex;gap:16px;transition:transform 0.5s cubic-bezier(0.25,0.1,0.25,1);will-change:transform;}
+.carousel-slide{flex:0 0 auto;display:flex;flex-direction:column;user-select:none;}
 
-.carousel-slide{
-  flex:0 0 auto;
-  display:flex;flex-direction:column;
-  user-select:none;
-}
 .slide-img-wrap{
   position:relative;overflow:hidden;
-  aspect-ratio:3/4;   /* portrait — flattering for jewellery shots */
-  margin-bottom:0;
+  /* Fixed height instead of aspect-ratio so it fits screen with controls visible */
+  height:340px;
 }
-.slide-img-wrap img{
-  width:100%;height:100%;object-fit:cover;
-  filter:saturate(0.75) contrast(1.08);
-  transition:transform 0.6s ease, filter 0.4s ease;
-  pointer-events:none;display:block;
-}
-.carousel-slide:hover .slide-img-wrap img{
-  transform:scale(1.04);
-  filter:saturate(0.95) contrast(1.08);
-}
-
-/* overlay shimmer on hover */
-.slide-img-wrap::after{
-  content:'';position:absolute;inset:0;
-  background:linear-gradient(to top,rgba(10,10,10,0.6) 0%,transparent 50%);
-  opacity:0;transition:opacity 0.4s;pointer-events:none;
-}
-.carousel-slide:hover .slide-img-wrap::after{opacity:1;}
-
-.slide-info{padding:16px 4px 0;}
-.slide-label{font-family:'Playfair Display',serif;font-size:16px;font-weight:400;margin-bottom:4px;}
+.slide-img-wrap img{width:100%;height:100%;object-fit:cover;filter:saturate(0.75) contrast(1.08);transition:transform 0.6s ease,filter 0.4s ease;pointer-events:none;display:block;}
+.carousel-slide:hover .slide-img-wrap img{transform:scale(1.04);filter:saturate(0.95) contrast(1.08);}
+.slide-info{padding:14px 4px 0;}
+.slide-label{font-family:'Playfair Display',serif;font-size:15px;font-weight:400;margin-bottom:4px;}
 .slide-sub{font-size:11px;letter-spacing:0.12em;text-transform:uppercase;}
 
-/* ARROWS */
-.carousel-controls{display:flex;align-items:center;justify-content:space-between;padding:40px 64px 0;}
+.carousel-controls{display:flex;align-items:center;justify-content:space-between;padding:24px 64px 64px;}
 .carousel-dots{display:flex;gap:8px;align-items:center;}
-.dot{
-  width:24px;height:2px;border:none;cursor:pointer;
-  transition:all 0.3s;padding:0;
-}
-.dot.active{width:40px;}
+.dot{width:20px;height:2px;border:none;cursor:pointer;transition:all 0.3s;padding:0;}
+.dot.active{width:36px;}
 .carousel-arrows{display:flex;gap:12px;}
-.arrow{
-  width:44px;height:44px;border:0.5px solid;
-  background:transparent;cursor:pointer;
-  display:flex;align-items:center;justify-content:center;
-  transition:all 0.25s;font-size:16px;
-  font-family:'Instrument Sans',sans-serif;
-}
+.arrow{width:44px;height:44px;border:0.5px solid;background:transparent;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all 0.25s;font-size:16px;font-family:'Instrument Sans',sans-serif;}
 .arrow:disabled{opacity:0.2;cursor:default;}
 
-/* PROCESS */
-.process{padding:120px 48px;border-top:0.5px solid rgba(200,205,208,0.08);}
-.process-inner{max-width:900px;margin:0 auto;}
-.process-title{font-family:'Playfair Display',serif;font-size:48px;font-weight:400;line-height:1.1;margin-bottom:16px;text-align:center;}
+/* PROCESS — visual photo steps */
+.process{border-top:0.5px solid rgba(200,205,208,0.08);}
+.process-header{
+  padding:80px 64px 64px;
+  display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:end;
+  border-bottom:0.5px solid rgba(200,205,208,0.08);
+}
+.process-eyebrow{font-size:10px;letter-spacing:0.28em;text-transform:uppercase;opacity:0.4;margin-bottom:20px;}
+.process-title{font-family:'Playfair Display',serif;font-size:44px;font-weight:400;line-height:1.1;}
 .process-title em{font-style:italic;}
-.process-sub{text-align:center;font-size:14px;line-height:1.8;max-width:520px;margin:0 auto 80px;}
-.process-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;}
-.step{padding:40px 28px;background:rgba(255,255,255,0.02);border:0.5px solid rgba(200,205,208,0.07);}
-.step-num{font-family:'Playfair Display',serif;font-size:52px;font-weight:400;font-style:italic;line-height:1;margin-bottom:20px;}
-.step-title{font-size:12px;letter-spacing:0.16em;text-transform:uppercase;margin-bottom:12px;}
-.step-body{font-size:13px;line-height:1.8;}
+.process-subtitle{font-size:14px;line-height:1.8;max-width:400px;align-self:end;}
+
+/* 4-step visual grid — image top, text bottom */
+.process-steps{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  border-bottom:0.5px solid rgba(200,205,208,0.08);
+}
+.process-step{
+  display:flex;flex-direction:column;
+  border-right:0.5px solid rgba(200,205,208,0.08);
+  overflow:hidden;
+  transition:opacity 0.3s;
+}
+.process-step:last-child{border-right:none;}
+.process-step-img{
+  position:relative;
+  height:260px;
+  overflow:hidden;
+  flex-shrink:0;
+}
+.process-step-img img{
+  width:100%;height:100%;
+  object-fit:cover;object-position:center;
+  filter:saturate(0.65) contrast(1.1);
+  transition:transform 0.5s ease, filter 0.4s;
+}
+.process-step:hover .process-step-img img{
+  transform:scale(1.04);
+  filter:saturate(0.9) contrast(1.1);
+}
+.process-step-num{
+  position:absolute;top:16px;left:16px;
+  font-family:'Playfair Display',serif;
+  font-size:36px;font-weight:400;font-style:italic;
+  line-height:1;
+  /* semi-transparent so image shows through */
+  opacity:0.9;
+}
+.process-step-text{
+  padding:24px 28px 32px;
+  flex:1;
+  border-top:0.5px solid rgba(200,205,208,0.08);
+}
+.process-step-title{
+  font-size:12px;letter-spacing:0.16em;text-transform:uppercase;
+  margin-bottom:10px;font-weight:400;
+}
+.process-step-body{font-size:13px;line-height:1.75;}
 
 /* CTA */
-.commission{min-height:60vh;display:flex;align-items:center;justify-content:center;flex-direction:column;text-align:center;padding:120px 48px;position:relative;overflow:hidden;border-top:0.5px solid rgba(200,205,208,0.08);}
+.commission{min-height:55vh;display:flex;align-items:center;justify-content:center;flex-direction:column;text-align:center;padding:100px 48px;position:relative;overflow:hidden;border-top:0.5px solid rgba(200,205,208,0.08);}
 .commission-bg{position:absolute;inset:0;pointer-events:none;}
 .commission-label{font-size:10px;letter-spacing:0.28em;text-transform:uppercase;opacity:0.5;margin-bottom:32px;}
-.commission-title{font-family:'Playfair Display',serif;font-size:60px;font-weight:400;line-height:1.05;margin-bottom:24px;}
+.commission-title{font-family:'Playfair Display',serif;font-size:56px;font-weight:400;line-height:1.05;margin-bottom:24px;}
 .commission-title em{font-style:italic;}
 .commission-body{font-size:15px;line-height:1.9;max-width:480px;margin:0 auto 48px;}
 .btn-commission{font-size:12px;letter-spacing:0.2em;text-transform:uppercase;padding:18px 52px;cursor:pointer;font-family:'Instrument Sans',sans-serif;transition:all 0.3s;display:inline-block;text-decoration:none;}
 .commission-note{margin-top:24px;font-size:12px;letter-spacing:0.08em;}
 
-/* FOOTER */
-footer{border-top:0.5px solid rgba(200,205,208,0.08);padding:48px;display:flex;align-items:center;justify-content:space-between;}
+footer{border-top:0.5px solid rgba(200,205,208,0.08);padding:40px 48px;display:flex;align-items:center;justify-content:space-between;}
 .footer-logo{font-family:'Playfair Display',serif;font-size:18px;font-weight:400;}
 .footer-logo em{font-style:italic;}
 .footer-links{display:flex;gap:32px;}
 .footer-links a{font-size:11px;letter-spacing:0.14em;text-transform:uppercase;text-decoration:none;transition:color 0.2s;}
-.footer-copy{font-size:11px;letter-spacing:0.08em;}
+.footer-copy{font-size:11px;letter-spacing:0.08em;opacity:0.4;}
 
 @media(max-width:768px){
   nav{padding:20px 24px;} .nav-links{display:none;}
   .hero{grid-template-columns:1fr;} .hero-left{padding:100px 24px 48px;} .hero-title{font-size:48px;} .hero-right{height:50vh;}
   .about{grid-template-columns:1fr;} .about-img{height:50vh;} .about-content{padding:60px 24px;}
-  .work-header{padding:0 24px 24px;} .carousel-track-outer{padding:0 24px;} .carousel-controls{padding:32px 24px 0;}
-  .process{padding:60px 24px;} .process-steps{grid-template-columns:1fr 1fr;}
+  .work-header{padding:0 24px 20px;} .carousel-track-outer{padding:0 24px;} .carousel-controls{padding:20px 24px 48px;}
+  .slide-img-wrap{height:260px;}
+  .process-header{grid-template-columns:1fr;padding:48px 24px 40px;gap:20px;}
+  .process-steps{grid-template-columns:1fr 1fr;}
+  .process-step-img{height:180px;}
   .commission{padding:80px 24px;} .commission-title{font-size:40px;}
-  footer{flex-direction:column;gap:24px;text-align:center;padding:40px 24px;}
+  footer{flex-direction:column;gap:24px;text-align:center;padding:32px 24px;}
 }
 </style>
 </head>
@@ -301,12 +337,8 @@ footer{border-top:0.5px solid rgba(200,205,208,0.08);padding:48px;display:flex;a
 </section>
 
 <section class="process" id="process">
-  <div class="process-inner">
-    <div class="section-label" id="process-label" style="justify-content:center;margin-bottom:20px;"></div>
-    <div class="process-title" id="process-title"></div>
-    <p class="process-sub" id="process-sub"></p>
-    <div class="process-steps" id="process-steps"></div>
-  </div>
+  <div class="process-header" id="process-header"></div>
+  <div class="process-steps" id="process-steps"></div>
 </section>
 
 <section class="commission" id="commission">
@@ -394,39 +426,35 @@ function res(src) { return IMAGES[src] || src; }
       <p>${S.about.para1}</p><p>${S.about.para2}</p><p>${S.about.para3}</p>
     </div>`;
 
-  // WORK HEADER
+  // WORK
   document.getElementById("work").style.background = C.background;
   document.getElementById("work-header").innerHTML = `
     <h2 class="work-title" style="color:${C.cream}">${S.gallery.sectionTitle}</h2>
     <span class="work-sub" style="color:${C.muted}">${S.gallery.sectionSub}</span>`;
 
   // CAROUSEL
-  const items   = S.gallery.items;
+  const items = S.gallery.items;
   const visible = S.gallery.visibleCount || 2.4;
-  const track   = document.getElementById("carousel-track");
-  const outer   = document.getElementById("track-outer");
-  const dotsEl  = document.getElementById("carousel-dots");
+  const track = document.getElementById("carousel-track");
+  const outer = document.getElementById("track-outer");
+  const dotsEl = document.getElementById("carousel-dots");
   const prevBtn = document.getElementById("arrow-prev");
   const nextBtn = document.getElementById("arrow-next");
 
-  // style arrows
-  [prevBtn, nextBtn].forEach(b => {
+  [prevBtn,nextBtn].forEach(b => {
     b.style.borderColor = C.accent + "99";
     b.style.color = C.cream;
-    b.onmouseover = () => { b.style.background = C.accent; b.style.borderColor = C.accent; };
-    b.onmouseout  = () => { b.style.background = "transparent"; b.style.borderColor = C.accent + "99"; };
+    b.onmouseover = () => { b.style.background=C.accent; b.style.borderColor=C.accent; };
+    b.onmouseout  = () => { b.style.background="transparent"; b.style.borderColor=C.accent+"99"; };
   });
 
   let current = 0;
-
-  function slideWidth() {
-    return (outer.clientWidth / visible);
-  }
+  function slideWidth() { return outer.clientWidth / visible; }
 
   function buildSlides() {
     track.innerHTML = "";
     const sw = slideWidth();
-    items.forEach((item, i) => {
+    items.forEach(item => {
       const slide = document.createElement("div");
       slide.className = "carousel-slide";
       slide.style.width = sw + "px";
@@ -444,64 +472,63 @@ function res(src) { return IMAGES[src] || src; }
 
   function buildDots() {
     dotsEl.innerHTML = "";
-    const pages = Math.ceil(items.length - Math.floor(visible) + 1);
-    for (let i = 0; i < items.length; i++) {
+    items.forEach((_,i) => {
       const dot = document.createElement("button");
-      dot.className = "dot" + (i === 0 ? " active" : "");
-      dot.style.background = i === 0 ? C.accent : C.muted + "55";
+      dot.className = "dot" + (i===0?" active":"");
+      dot.style.background = i===0 ? C.accent : C.muted+"55";
       dot.onclick = () => goTo(i);
       dotsEl.appendChild(dot);
-    }
+    });
   }
 
   function updateDots() {
-    [...dotsEl.children].forEach((d, i) => {
-      const active = i === current;
-      d.classList.toggle("active", active);
-      d.style.background = active ? C.accent : C.muted + "55";
+    [...dotsEl.children].forEach((d,i) => {
+      const a = i===current;
+      d.classList.toggle("active",a);
+      d.style.background = a ? C.accent : C.muted+"55";
     });
   }
 
   function goTo(index) {
     const max = items.length - Math.floor(visible);
     current = Math.max(0, Math.min(index, max));
-    track.style.transform = `translateX(-${current * slideWidth()}px)`;
+    track.style.transform = `translateX(-${current*slideWidth()}px)`;
     updateDots();
-    prevBtn.disabled = current === 0;
-    nextBtn.disabled = current >= max;
+    prevBtn.disabled = current===0;
+    nextBtn.disabled = current>=max;
   }
 
-  // drag / swipe
-  let dragStart = null, dragX = 0;
-  outer.addEventListener("mousedown",  e => { dragStart = e.clientX; dragX = 0; track.style.transition = "none"; });
-  outer.addEventListener("mousemove",  e => { if (dragStart === null) return; dragX = e.clientX - dragStart; track.style.transform = `translateX(${-current * slideWidth() + dragX}px)`; });
-  outer.addEventListener("mouseup",    e => { track.style.transition = ""; if (Math.abs(dragX) > 60) goTo(current + (dragX < 0 ? 1 : -1)); else goTo(current); dragStart = null; });
-  outer.addEventListener("mouseleave", e => { if (dragStart !== null) { track.style.transition = ""; goTo(current); dragStart = null; } });
-  outer.addEventListener("touchstart", e => { dragStart = e.touches[0].clientX; track.style.transition = "none"; }, {passive:true});
-  outer.addEventListener("touchmove",  e => { if (dragStart === null) return; dragX = e.touches[0].clientX - dragStart; track.style.transform = `translateX(${-current * slideWidth() + dragX}px)`; }, {passive:true});
-  outer.addEventListener("touchend",   e => { track.style.transition = ""; if (Math.abs(dragX) > 60) goTo(current + (dragX < 0 ? 1 : -1)); else goTo(current); dragStart = null; });
-
-  prevBtn.onclick = () => goTo(current - 1);
-  nextBtn.onclick = () => goTo(current + 1);
-
-  buildSlides();
-  buildDots();
-  goTo(0);
+  let dragStart=null, dragX=0;
+  outer.addEventListener("mousedown",  e=>{dragStart=e.clientX;dragX=0;track.style.transition="none";});
+  outer.addEventListener("mousemove",  e=>{if(dragStart===null)return;dragX=e.clientX-dragStart;track.style.transform=`translateX(${-current*slideWidth()+dragX}px)`;});
+  outer.addEventListener("mouseup",    ()=>{track.style.transition="";if(Math.abs(dragX)>60)goTo(current+(dragX<0?1:-1));else goTo(current);dragStart=null;});
+  outer.addEventListener("mouseleave", ()=>{if(dragStart!==null){track.style.transition="";goTo(current);dragStart=null;}});
+  outer.addEventListener("touchstart", e=>{dragStart=e.touches[0].clientX;track.style.transition="none";},{passive:true});
+  outer.addEventListener("touchmove",  e=>{if(dragStart===null)return;dragX=e.touches[0].clientX-dragStart;track.style.transform=`translateX(${-current*slideWidth()+dragX}px)`;},{passive:true});
+  outer.addEventListener("touchend",   ()=>{track.style.transition="";if(Math.abs(dragX)>60)goTo(current+(dragX<0?1:-1));else goTo(current);dragStart=null;});
+  prevBtn.onclick = () => goTo(current-1);
+  nextBtn.onclick = () => goTo(current+1);
+  buildSlides(); buildDots(); goTo(0);
   window.addEventListener("resize", () => { buildSlides(); goTo(current); });
 
-  // PROCESS
+  // PROCESS — visual photo steps
   document.getElementById("process").style.background = C.backgroundAlt;
-  document.getElementById("process-label").style.color = C.silver;
-  document.getElementById("process-label").textContent = S.process.label;
-  document.getElementById("process-title").style.color = C.cream;
-  document.getElementById("process-title").innerHTML = `${S.process.title1}<br><em style="color:${C.silver}">${S.process.titleEm}</em>`;
-  document.getElementById("process-sub").style.color = C.muted;
-  document.getElementById("process-sub").textContent = S.process.subtitle;
-  document.getElementById("process-steps").innerHTML = S.process.steps.map((st,i) => `
-    <div class="step">
-      <div class="step-num" style="color:${C.accent}">${String(i+1).padStart(2,"0")}</div>
-      <div class="step-title" style="color:${C.cream}">${st.title}</div>
-      <div class="step-body" style="color:${C.muted}">${st.body}</div>
+  document.getElementById("process-header").innerHTML = `
+    <div>
+      <p class="process-eyebrow" style="color:${C.silver}">${S.process.label}</p>
+      <h2 class="process-title" style="color:${C.cream}">${S.process.title}</h2>
+    </div>
+    <p class="process-subtitle" style="color:${C.muted}">${S.process.subtitle}</p>`;
+  document.getElementById("process-steps").innerHTML = S.process.steps.map(st => `
+    <div class="process-step">
+      <div class="process-step-img">
+        <img src="${res(st.src)}" alt="${st.title}">
+        <div class="process-step-num" style="color:${C.cream}">${st.num}</div>
+      </div>
+      <div class="process-step-text">
+        <div class="process-step-title" style="color:${C.cream}">${st.title}</div>
+        <div class="process-step-body" style="color:${C.muted}">${st.body}</div>
+      </div>
     </div>`).join("");
 
   // CTA
