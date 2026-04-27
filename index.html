@@ -388,7 +388,7 @@ function res(src) { return IMAGES[src] || src; }
   document.getElementById("hero-mosaic").innerHTML = ["HERO1","HERO2","HERO3","HERO4"].map(k =>
     `<div class="mosaic-cell"><img src="${res(k)}" alt=""></div>`).join("");
 
-  const di = ["Sterling silver","·","Commission only","·","Handmade one at a time","·",S.location,"·","Natural gemstones","·","Close collaboration","·"];
+  const di = ["Sterling silver","·","Commission only","·","Handmade one at a time","·",S.location,"·","Ethical gemstones","·","Close collaboration","·"]; //<---------------------------------------------------------------carousell
   document.getElementById("divider").innerHTML = [...di,...di].map(t =>
     `<span class="divider-item" style="color:${C.muted}">${t}</span>`).join("");
   document.querySelector(".divider-strip").style.background = C.backgroundAlt;
