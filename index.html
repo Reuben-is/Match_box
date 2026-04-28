@@ -164,13 +164,14 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 .hero-right-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(13,15,14,0.4) 0%,transparent 60%);pointer-events:none;}
 
 .divider-strip{border-top:0.5px solid rgba(200,205,208,0.1);border-bottom:0.5px solid rgba(200,205,208,0.1);padding:16px 0;overflow:hidden;}
-.divider-inner{display:flex;gap:56px;white-space:nowrap;animation:marquee 28s linear infinite;}
-.divider-item{font-size:10px;letter-spacing:0.24em;text-transform:uppercase;flex-shrink:0;}
+.divider-inner{display:flex;gap:0;white-space:nowrap;animation:marquee 36s linear infinite;width:max-content;}
+.divider-item{font-size:10px;letter-spacing:0.24em;text-transform:uppercase;flex-shrink:0;padding:0 28px;}
 @keyframes marquee{from{transform:translateX(0);}to{transform:translateX(-50%);}}
 
 .about{display:grid;grid-template-columns:1fr 1fr;min-height:80vh;}
 .about-img{position:relative;overflow:hidden;}
-.about-img img{width:100%;height:100%;object-fit:cover;filter:saturate(0.65) contrast(1.15);}
+.about-img #about-img-wrap{position:absolute;inset:0;}
+.about-img #about-img-wrap img{width:100%;height:100%;object-fit:cover;filter:saturate(0.65) contrast(1.15);}
 .about-img-overlay{position:absolute;inset:0;pointer-events:none;}
 .about-content{padding:100px 72px;display:flex;flex-direction:column;justify-content:center;}
 .section-label{font-size:10px;letter-spacing:0.28em;text-transform:uppercase;opacity:0.5;margin-bottom:32px;display:flex;align-items:center;gap:16px;}
@@ -185,7 +186,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 .work-title{font-family:'Playfair Display',serif;font-size:48px;font-weight:400;margin-bottom:12px;}
 .work-sub{font-size:11px;letter-spacing:0.2em;text-transform:uppercase;}
 
-.gallery-strip{display:flex;gap:0;max-width:1400px;margin:0 auto;overflow:hidden;cursor:none;}
+.gallery-strip{display:flex;gap:0;max-width:1400px;margin:0 auto;overflow:hidden;}
 .gallery-item{flex:1;position:relative;overflow:hidden;transition:flex 0.6s cubic-bezier(0.4,0,0.2,1);}
 .gallery-item.expanded{flex:2.8;}
 .gallery-item-img{width:100%;height:75vh;object-fit:cover;filter:saturate(0.7) contrast(1.1);display:block;transition:filter 0.4s;}
@@ -199,8 +200,6 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 .gallery-item-desc{font-size:13px;line-height:1.8;max-width:320px;}
 .gallery-item-divider{width:32px;height:0.5px;margin-bottom:14px;opacity:0.4;}
 
-.gallery-cursor{position:fixed;pointer-events:none;z-index:999;display:flex;align-items:center;justify-content:center;width:64px;height:64px;border-radius:50%;font-size:10px;letter-spacing:0.16em;text-transform:uppercase;transform:translate(-50%,-50%);transition:opacity 0.2s;opacity:0;}
-
 @media(max-width:768px){
   .work{padding:80px 0;}
   .gallery-strip{flex-direction:column;gap:2px;}
@@ -208,7 +207,6 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
   .gallery-item-img{height:60vw;}
   .gallery-item-overlay{opacity:1;}
   .gallery-item-info{opacity:1;transform:none;}
-  .gallery-cursor{display:none;}
 }
 
 /* PRICING SECTION */
@@ -246,7 +244,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 .process-steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:48px;max-width:1400px;margin:0 auto;}
 .process-step{display:flex;flex-direction:column;gap:24px;}
 .process-step-img{position:relative;aspect-ratio:4/5;overflow:hidden;border-radius:2px;}
-.process-step-img img{width:100%;height:100%;object-fit:cover;filter:saturate(0.65) contrast(1.15);}
+.process-step-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:saturate(0.65) contrast(1.15);}
 .process-step-num{position:absolute;top:24px;right:24px;font-family:'Playfair Display',serif;font-size:72px;opacity:0.15;font-style:italic;}
 .process-step-text{display:flex;flex-direction:column;gap:12px;}
 .process-step-title{font-size:18px;letter-spacing:0.02em;}
@@ -370,11 +368,11 @@ footer{padding:64px 48px 48px;display:flex;flex-direction:column;gap:40px;border
       G4:"images/g4.jpg",
       G5:"images/g5.jpg",
       G6:"images/g6.jpg",
-      ABOUT:"images/about.jpg",
-      P1:"images/p1.jpg",
-      P2:"images/p2.jpg",
-      P3:"images/p3.jpg",
-      P4:"images/p4.jpg"
+      ABOUT:"images/about.png",
+      P1:"images/p1.png",
+      P2:"images/p2.png",
+      P3:"images/p3.png",
+      P4:"images/p4.png"
     };
     return m[k]||"";
   }
@@ -435,8 +433,9 @@ footer{padding:64px 48px 48px;display:flex;flex-direction:column;gap:40px;border
 
   const div = document.getElementById("divider");
   div.style.background = C.backgroundAlt;
-  const marquee = ["Custom silverwork","Handpicked gemstones","Commission only",S.location];
-  div.innerHTML = `<div class="divider-inner" style="color:${C.muted}">${marquee.concat(marquee).map(t=>`<span class="divider-item">${t}</span>`).join("")}</div>`;
+  const marqueeItems = ["Custom silverwork","·","Handpicked gemstones","·","Commission only","·",S.location,"·","Sterling silver","·","Made to order","·"];
+  const marqueeHTML = marqueeItems.concat(marqueeItems).map(t=>`<span class="divider-item">${t}</span>`).join("");
+  div.innerHTML = `<div class="divider-inner" style="color:${C.muted}">${marqueeHTML}</div>`;
 
   const aiw = document.getElementById("about-img-wrap");
   const aimg = document.createElement("img");
@@ -458,18 +457,6 @@ footer{padding:64px 48px 48px;display:flex;flex-direction:column;gap:40px;border
     <h2 class="work-title" style="color:${C.cream}">${S.gallery.sectionTitle}</h2>
     <span class="work-sub" style="color:${C.muted}">${S.gallery.sectionSub}</span>`;
 
-  // Custom cursor
-  const cursor = document.createElement("div");
-  cursor.className = "gallery-cursor";
-  cursor.style.cssText = `background:${C.accent}cc;color:${C.cream};`;
-  cursor.textContent = "View";
-  document.body.appendChild(cursor);
-
-  document.addEventListener("mousemove", e => {
-    cursor.style.left = e.clientX + "px";
-    cursor.style.top  = e.clientY + "px";
-  });
-
   const strip = document.getElementById("gallery-strip");
   let expandedIndex = null;
 
@@ -486,12 +473,6 @@ footer{padding:64px 48px 48px;display:flex;flex-direction:column;gap:40px;border
         <div class="gallery-item-desc" style="color:${C.silver}">${item.desc}</div>
       </div>`;
 
-    el.addEventListener("mouseenter", () => {
-      cursor.style.opacity = "1";
-    });
-    el.addEventListener("mouseleave", () => {
-      cursor.style.opacity = "0";
-    });
     el.addEventListener("click", () => {
       if (expandedIndex === i) {
         el.classList.remove("expanded");
