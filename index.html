@@ -32,12 +32,12 @@ const SETTINGS = {
   },
 
   hero: {
-    eyebrow: "Handmade silver jewellery · Melbourne",
+    eyebrow: "Handmade jewellery · Melbourne",
     title1:  "Welcome",
     title2:  "to",
     titleEm: "Matchbox",
     title3:  "by Reuben",
-    body:    "Custom jewelry is more than just your initials stamped onto mass-produced pieces. At Matchbox, custom means designing from the ground up, considering material, form, and function.",
+    body:    "Custom jewellery is more than just your initials stamped onto mass-produced pieces. At Matchbox, custom means designing from the ground up, considering material, form, and function.",
     ctaBtn:  "Start a commission",
     ghostBtn:"See the work →",
   },
@@ -46,7 +46,7 @@ const SETTINGS = {
     label:   "About",
     title1:  "I'm Reuben.",
     titleEm: "I am making things.",
-    para1: "Matchbox is a one-person studio based in Melbourne. working in sterling silver, with natural and lab gemstones — sapphires, opals, tourmalines, rubies — handpicked for their charm, from local markets and suppliers.",
+    para1: "Matchbox is a one-person studio based in Melbourne, working primarily in sterling silver with natural and lab gemstones — sapphires, opals, tourmalines, rubies — handpicked for their charm from local markets and suppliers. Occasionally a commission calls for something different: brass, stainless steel, or found objects given a new life.",
     para2: "Freshly graduated from Monash University with a Bachelor of Industrial Design, my work is driven by a curiosity for materials and processes, and supported by years of study.",
     para3: "Every commission is different. I work closely with each client through the whole process — from the first idea to the finished piece.",
   },
@@ -54,16 +54,13 @@ const SETTINGS = {
   gallery: {
     sectionTitle: "Selected work",
     sectionSub:   "All pieces commission only",
-    visibleCount: 2.4,
     items: [
-      { label: "Mary's pendant",  sub: "Sterling silver · opal",      src: "G1" },
-      { label: "Sapphire pendant",        sub: "Sterling silver · sapphire",      src: "G2" },
-      { label: "Hex ring",             sub: "Sterling silver",                 src: "G3" },
-      { label: "Tourmaline pendant",     sub: "Sterling silver · tourmaline",    src: "G4" },
-      { label: "Möbius band",               sub: "Sterling silver",                 src: "G5" },
-      { label: "Tourmaline, bezel set", sub: "Sterling silver · tourmaline", src: "G6" },
-      { label: "tourmaline pendant",          sub: "Sterling silver · tourmaline",        src: "G4" },
-      { label: "Lily's pendant",      sub: "Sterling silver · sapphire",      src: "G2" },
+      { label: "Hammered band",        sub: "Sterling silver",                      desc: "A wide hammered band forged from sterling silver, the irregular surface catching light differently at every angle.", src: "G1" },
+      { label: "Twig bangle",          sub: "Sterling silver",                      desc: "A fine sterling silver bangle shaped like a natural twig, complete with small gold-dot inclusions where the branches would meet.", src: "G2" },
+      { label: "Alastair's Keys",      sub: "Stainless steel · brass setting",      desc: "A matched pair of pendants made from Alastair's own keys, set into fabricated brass housings and hung on ball chains.", src: "G3" },
+      { label: "Opal pendant",         sub: "Sterling silver · Australian opal",    desc: "A rough Australian opal bezel-set in a chunky sterling silver mount, suspended from a heavy curb chain.", src: "G4" },
+      { label: "Wave ring",            sub: "Sterling silver",                      desc: "A smooth polished band with a gentle wave profile — simple on first glance, quietly unusual once worn.", src: "G5" },
+      { label: "Twist ring",           sub: "Sterling silver",                      desc: "A flowing multi-twist band with a small teal stone set at the centre, where the strands converge.", src: "G6" },
     ]
   },
 
@@ -74,7 +71,7 @@ const SETTINGS = {
     subtitle: "Every piece is unique, prices vary based on materials and complexity",
     tiers: [
       {
-        name: "Simple rings",
+        name: "Simple pieces",
         price: "From $280",
         features: [
           "Sterling silver band",
@@ -111,12 +108,12 @@ const SETTINGS = {
   process: {
     label:    "How it works",
     title:    "The commission process",
-    subtitle: "for jewlery that has a story.",
+    subtitle: "for jewellery that has a story.",
     steps: [
-      { num: "01", title: "Reach out",   body: "Send me a DM on Instagram. Tell me what you're thinking. There are no wrong answers, or dumb questions.", src: "G5" },
-      { num: "02", title: "Have a chat",     body: "We work through the idea together — materials, stones, form, meaning. I'll ask a lot of questions.", src: "G4" },
-      { num: "03", title: "Workshop",   body: "I'll share progress as I go. You're part of the process, not just waiting at the end of it.", src: "G3" },
-      { num: "04", title: "It's yours",  body: "Delivered in our signature recycled matchbox packaging. Something unique that didn't exist before.", src: "COMMISSION" },
+      { num: "01", title: "Reach out",   body: "Send me a DM on Instagram. Tell me what you're thinking. There are no wrong answers, or dumb ideas.", src: "P1" },
+      { num: "02", title: "Have a chat", body: "I'll ask about size, material, meaning, and references. The more you share, the better the result.", src: "P2" },
+      { num: "03", title: "Workshop",    body: "I'll share progress shots as I go. You're part of the process, not just waiting at the end of it.", src: "P3" },
+      { num: "04", title: "It's yours",  body: "Delivered in a recycled matchbox. Something that didn't exist before, made specifically for you.", src: "P4" },
     ]
   },
 
@@ -188,24 +185,31 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 .work-title{font-family:'Playfair Display',serif;font-size:48px;font-weight:400;margin-bottom:12px;}
 .work-sub{font-size:11px;letter-spacing:0.2em;text-transform:uppercase;}
 
-.carousel-wrapper{position:relative;max-width:1400px;margin:0 auto;}
-.carousel-controls{position:absolute;top:50%;width:100%;transform:translateY(-50%);display:flex;justify-content:space-between;pointer-events:none;z-index:2;padding:0 12px;}
-.carousel-arrow{width:52px;height:52px;border-radius:50%;border:0.5px solid;background:transparent;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:20px;pointer-events:auto;transition:all 0.2s;}
-.carousel-arrow:disabled{opacity:0.3;cursor:not-allowed;}
+.gallery-strip{display:flex;gap:0;max-width:1400px;margin:0 auto;overflow:hidden;cursor:none;}
+.gallery-item{flex:1;position:relative;overflow:hidden;transition:flex 0.6s cubic-bezier(0.4,0,0.2,1);}
+.gallery-item.expanded{flex:2.8;}
+.gallery-item-img{width:100%;height:75vh;object-fit:cover;filter:saturate(0.7) contrast(1.1);display:block;transition:filter 0.4s;}
+.gallery-item.expanded .gallery-item-img{filter:saturate(0.85) contrast(1.05);}
+.gallery-item-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(13,15,14,0.92) 0%,rgba(13,15,14,0.1) 50%,transparent 100%);opacity:0;transition:opacity 0.4s;pointer-events:none;}
+.gallery-item.expanded .gallery-item-overlay{opacity:1;}
+.gallery-item-info{position:absolute;bottom:0;left:0;right:0;padding:40px 32px;transform:translateY(12px);opacity:0;transition:opacity 0.4s, transform 0.4s;}
+.gallery-item.expanded .gallery-item-info{opacity:1;transform:translateY(0);}
+.gallery-item-label{font-family:'Playfair Display',serif;font-size:22px;font-weight:400;margin-bottom:6px;}
+.gallery-item-sub{font-size:10px;letter-spacing:0.2em;text-transform:uppercase;margin-bottom:14px;}
+.gallery-item-desc{font-size:13px;line-height:1.8;max-width:320px;}
+.gallery-item-divider{width:32px;height:0.5px;margin-bottom:14px;opacity:0.4;}
 
-.carousel-track-outer{overflow:hidden;position:relative;}
-.carousel-track{display:flex;transition:transform 0.4s cubic-bezier(0.4,0,0.2,1);cursor:grab;}
-.carousel-track:active{cursor:grabbing;}
-.carousel-slide{flex-shrink:0;padding:0 12px;}
-.slide-img-wrap{position:relative;aspect-ratio:3/4;overflow:hidden;border-radius:2px;margin-bottom:20px;}
-.slide-img-wrap img{width:100%;height:100%;object-fit:cover;filter:saturate(0.7) contrast(1.1);transition:transform 0.5s;}
-.carousel-slide:hover .slide-img-wrap img{transform:scale(1.02);}
-.slide-info{padding:0 4px;}
-.slide-label{font-size:13px;letter-spacing:0.04em;margin-bottom:4px;}
-.slide-sub{font-size:10px;letter-spacing:0.16em;text-transform:uppercase;}
+.gallery-cursor{position:fixed;pointer-events:none;z-index:999;display:flex;align-items:center;justify-content:center;width:64px;height:64px;border-radius:50%;font-size:10px;letter-spacing:0.16em;text-transform:uppercase;transform:translate(-50%,-50%);transition:opacity 0.2s;opacity:0;}
 
-.carousel-dots{display:flex;gap:8px;justify-content:center;margin-top:48px;}
-.dot{width:8px;height:8px;border-radius:50%;border:none;cursor:pointer;transition:all 0.2s;}
+@media(max-width:768px){
+  .work{padding:80px 0;}
+  .gallery-strip{flex-direction:column;gap:2px;}
+  .gallery-item{flex:none!important;}
+  .gallery-item-img{height:60vw;}
+  .gallery-item-overlay{opacity:1;}
+  .gallery-item-info{opacity:1;transform:none;}
+  .gallery-cursor{display:none;}
+}
 
 /* PRICING SECTION */
 .pricing{padding:120px 48px;position:relative;}
@@ -323,16 +327,7 @@ footer{padding:64px 48px 48px;display:flex;flex-direction:column;gap:40px;border
 
 <section class="work" id="work">
   <div class="work-header" id="work-header"></div>
-  <div class="carousel-wrapper">
-    <div class="carousel-controls">
-      <button class="carousel-arrow" id="arrow-prev">←</button>
-      <button class="carousel-arrow" id="arrow-next">→</button>
-    </div>
-    <div class="carousel-track-outer" id="track-outer">
-      <div class="carousel-track" id="carousel-track"></div>
-    </div>
-    <div class="carousel-dots" id="carousel-dots"></div>
-  </div>
+  <div class="gallery-strip" id="gallery-strip"></div>
 </section>
 
 <section class="pricing" id="pricing">
@@ -365,6 +360,10 @@ footer{padding:64px 48px 48px;display:flex;flex-direction:column;gap:40px;border
   const C = S.colors;
   function res(k){
     const m = {
+      H1:"images/h1.jpg",
+      H2:"images/h2.jpg",
+      H3:"images/h3.jpg",
+      H4:"images/h4.jpg",
       G1:"images/g1.jpg",
       G2:"images/g2.jpg",
       G3:"images/g3.jpg",
@@ -372,7 +371,10 @@ footer{padding:64px 48px 48px;display:flex;flex-direction:column;gap:40px;border
       G5:"images/g5.jpg",
       G6:"images/g6.jpg",
       ABOUT:"images/about.jpg",
-      COMMISSION:"images/commission.jpg"
+      P1:"images/p1.jpg",
+      P2:"images/p2.jpg",
+      P3:"images/p3.jpg",
+      P4:"images/p4.jpg"
     };
     return m[k]||"";
   }
@@ -423,7 +425,7 @@ footer{padding:64px 48px 48px;display:flex;flex-direction:column;gap:40px;border
   hghost.onmouseout  = () => hghost.style.color = C.silver;
 
   const mosaic = document.getElementById("hero-mosaic");
-  const mosaicImgs = ["G1","G2","G3","G4"];
+  const mosaicImgs = ["H1","H2","H3","H4"];
   mosaicImgs.forEach(src => {
     const cell = document.createElement("div");
     cell.className = "mosaic-cell";
@@ -456,83 +458,55 @@ footer{padding:64px 48px 48px;display:flex;flex-direction:column;gap:40px;border
     <h2 class="work-title" style="color:${C.cream}">${S.gallery.sectionTitle}</h2>
     <span class="work-sub" style="color:${C.muted}">${S.gallery.sectionSub}</span>`;
 
-  const items   = S.gallery.items;
-  const visible = S.gallery.visibleCount || 2.4;
-  const track   = document.getElementById("carousel-track");
-  const outer   = document.getElementById("track-outer");
-  const dotsEl  = document.getElementById("carousel-dots");
-  const prevBtn = document.getElementById("arrow-prev");
-  const nextBtn = document.getElementById("arrow-next");
+  // Custom cursor
+  const cursor = document.createElement("div");
+  cursor.className = "gallery-cursor";
+  cursor.style.cssText = `background:${C.accent}cc;color:${C.cream};`;
+  cursor.textContent = "View";
+  document.body.appendChild(cursor);
 
-  [prevBtn,nextBtn].forEach(b => {
-    b.style.borderColor = C.accent + "99";
-    b.style.color = C.cream;
-    b.onmouseover = () => { b.style.background=C.accent; b.style.borderColor=C.accent; };
-    b.onmouseout  = () => { b.style.background="transparent"; b.style.borderColor=C.accent+"99"; };
+  document.addEventListener("mousemove", e => {
+    cursor.style.left = e.clientX + "px";
+    cursor.style.top  = e.clientY + "px";
   });
 
-  let current = 0;
-  function slideWidth() { return outer.clientWidth / visible; }
+  const strip = document.getElementById("gallery-strip");
+  let expandedIndex = null;
 
-  function buildSlides() {
-    track.innerHTML = "";
-    const sw = slideWidth();
-    items.forEach(item => {
-      const slide = document.createElement("div");
-      slide.className = "carousel-slide";
-      slide.style.width = sw + "px";
-      slide.innerHTML = `
-        <div class="slide-img-wrap">
-          <img src="${res(item.src)}" alt="${item.label}">
-        </div>
-        <div class="slide-info">
-          <div class="slide-label" style="color:${C.cream}">${item.label}</div>
-          ${item.sub ? `<div class="slide-sub" style="color:${C.muted}">${item.sub}</div>` : ""}
-        </div>`;
-      track.appendChild(slide);
+  S.gallery.items.forEach((item, i) => {
+    const el = document.createElement("div");
+    el.className = "gallery-item";
+    el.innerHTML = `
+      <img class="gallery-item-img" src="${res(item.src)}" alt="${item.label}">
+      <div class="gallery-item-overlay"></div>
+      <div class="gallery-item-info">
+        <div class="gallery-item-label" style="color:${C.cream}">${item.label}</div>
+        <div class="gallery-item-sub" style="color:${C.muted}">${item.sub}</div>
+        <div class="gallery-item-divider" style="background:${C.accent}"></div>
+        <div class="gallery-item-desc" style="color:${C.silver}">${item.desc}</div>
+      </div>`;
+
+    el.addEventListener("mouseenter", () => {
+      cursor.style.opacity = "1";
     });
-  }
-
-  function buildDots() {
-    dotsEl.innerHTML = "";
-    items.forEach((_,i) => {
-      const dot = document.createElement("button");
-      dot.className = "dot" + (i===0?" active":"");
-      dot.style.background = i===0 ? C.accent : C.muted+"55";
-      dot.onclick = () => goTo(i);
-      dotsEl.appendChild(dot);
+    el.addEventListener("mouseleave", () => {
+      cursor.style.opacity = "0";
     });
-  }
-
-  function updateDots() {
-    [...dotsEl.children].forEach((d,i) => {
-      const a = i===current;
-      d.classList.toggle("active",a);
-      d.style.background = a ? C.accent : C.muted+"55";
+    el.addEventListener("click", () => {
+      if (expandedIndex === i) {
+        el.classList.remove("expanded");
+        expandedIndex = null;
+      } else {
+        if (expandedIndex !== null) {
+          strip.children[expandedIndex].classList.remove("expanded");
+        }
+        el.classList.add("expanded");
+        expandedIndex = i;
+      }
     });
-  }
 
-  function goTo(index) {
-    const max = items.length - Math.floor(visible);
-    current = Math.max(0, Math.min(index, max));
-    track.style.transform = `translateX(-${current*slideWidth()}px)`;
-    updateDots();
-    prevBtn.disabled = current===0;
-    nextBtn.disabled = current>=max;
-  }
-
-  let dragStart=null, dragX=0;
-  outer.addEventListener("mousedown",  e=>{dragStart=e.clientX;dragX=0;track.style.transition="none";});
-  outer.addEventListener("mousemove",  e=>{if(dragStart===null)return;dragX=e.clientX-dragStart;track.style.transform=`translateX(${-current*slideWidth()+dragX}px)`;});
-  outer.addEventListener("mouseup",    ()=>{track.style.transition="";if(Math.abs(dragX)>60)goTo(current+(dragX<0?1:-1));else goTo(current);dragStart=null;});
-  outer.addEventListener("mouseleave", ()=>{if(dragStart!==null){track.style.transition="";goTo(current);dragStart=null;}});
-  outer.addEventListener("touchstart", e=>{dragStart=e.touches[0].clientX;track.style.transition="none";},{passive:true});
-  outer.addEventListener("touchmove",  e=>{if(dragStart===null)return;dragX=e.touches[0].clientX-dragStart;track.style.transform=`translateX(${-current*slideWidth()+dragX}px)`;},{passive:true});
-  outer.addEventListener("touchend",   ()=>{track.style.transition="";if(Math.abs(dragX)>60)goTo(current+(dragX<0?1:-1));else goTo(current);dragStart=null;});
-  prevBtn.onclick = () => goTo(current-1);
-  nextBtn.onclick = () => goTo(current+1);
-  buildSlides(); buildDots(); goTo(0);
-  window.addEventListener("resize", () => { buildSlides(); goTo(current); });
+    strip.appendChild(el);
+  });
 
   // PRICING SECTION
   document.getElementById("pricing").style.background = C.backgroundAlt;
