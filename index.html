@@ -116,7 +116,7 @@ const SETTINGS = {
       { num: "01", title: "Reach out",   body: "Send me a DM on Instagram. Tell me what you're thinking. There are no wrong answers, or dumb questions.", src: "G5" },
       { num: "02", title: "Have a chat",     body: "We work through the idea together — materials, stones, form, meaning. I'll ask a lot of questions.", src: "G4" },
       { num: "03", title: "Workshop",   body: "I'll share progress as I go. You're part of the process, not just waiting at the end of it.", src: "G3" },
-      { num: "04", title: "It's yours",  body: "Delivered in our signature recycled matchbox packaging. Something unique that didn't exist before.", src: "ABOUT" },
+      { num: "04", title: "It's yours",  body: "Delivered in our signature recycled matchbox packaging. Something unique that didn't exist before.", src: "COMMISSION" },
     ]
   },
 
@@ -365,13 +365,14 @@ footer{padding:64px 48px 48px;display:flex;flex-direction:column;gap:40px;border
   const C = S.colors;
   function res(k){
     const m = {
-      G1:"https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=800&q=80",
-      G2:"https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=800&q=80",
-      G3:"https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=800&q=80",
-      G4:"https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=800&q=80",
-      G5:"https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=800&q=80",
-      G6:"https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=800&q=80",
-      ABOUT:"https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=800&q=80"
+      G1:"images/g1.jpg",
+      G2:"images/g2.jpg",
+      G3:"images/g3.jpg",
+      G4:"images/g4.jpg",
+      G5:"images/g5.jpg",
+      G6:"images/g6.jpg",
+      ABOUT:"images/about.jpg",
+      COMMISSION:"images/commission.jpg"
     };
     return m[k]||"";
   }
