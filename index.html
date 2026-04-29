@@ -187,17 +187,13 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 .work-sub{font-size:11px;letter-spacing:0.2em;text-transform:uppercase;}
 
 .gallery-strip{display:flex;gap:0;max-width:1400px;margin:0 auto;overflow:hidden;}
-.gallery-item{flex:1;position:relative;overflow:hidden;cursor:pointer;transition:flex 0.6s cubic-bezier(0.4,0,0.2,1);}
-.gallery-item.expanded{flex:2.8;}
-.gallery-item-img{width:100%;height:75vh;object-fit:cover;filter:saturate(0.7) contrast(1.1);display:block;transition:filter 0.4s,transform 0.5s cubic-bezier(0.4,0,0.2,1);}
-.gallery-item:hover:not(.expanded) .gallery-item-img{filter:saturate(0.85) contrast(1.08);transform:scale(1.04);}
+.gallery-item{flex:1;position:relative;overflow:hidden;cursor:pointer;transition:flex 0.55s cubic-bezier(0.4,0,0.2,1) 0.05s;}
+.gallery-item:hover:not(.expanded){flex:1.35;transition-delay:0s;}
+.gallery-item.expanded{flex:2.8;transition-delay:0s;}
+.gallery-item-img{width:100%;height:75vh;object-fit:cover;filter:saturate(0.7) contrast(1.1);display:block;transition:filter 0.4s;}
 .gallery-item.expanded .gallery-item-img{filter:saturate(0.85) contrast(1.05);}
 .gallery-item-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(13,15,14,0.92) 0%,rgba(13,15,14,0.1) 50%,transparent 100%);opacity:0;transition:opacity 0.4s;pointer-events:none;}
-.gallery-item:hover:not(.expanded) .gallery-item-overlay{opacity:0.5;}
 .gallery-item.expanded .gallery-item-overlay{opacity:1;}
-.gallery-item-hint{position:absolute;bottom:28px;left:0;right:0;display:flex;justify-content:center;opacity:0;transform:translateY(8px);transition:opacity 0.3s,transform 0.3s;pointer-events:none;}
-.gallery-item-hint span{font-size:9px;letter-spacing:0.22em;text-transform:uppercase;padding:7px 16px;border:0.5px solid rgba(200,205,208,0.3);color:rgba(240,236,228,0.85);background:rgba(13,15,14,0.5);backdrop-filter:blur(6px);}
-.gallery-item:hover:not(.expanded) .gallery-item-hint{opacity:1;transform:translateY(0);}
 .gallery-item-info{position:absolute;bottom:0;left:0;right:0;padding:40px 32px;transform:translateY(12px);opacity:0;transition:opacity 0.4s,transform 0.4s;}
 .gallery-item.expanded .gallery-item-info{opacity:1;transform:translateY(0);}
 .gallery-item-label{font-family:'Playfair Display',serif;font-size:22px;font-weight:400;margin-bottom:6px;}
@@ -478,7 +474,6 @@ footer{padding:64px 48px 48px;display:flex;flex-direction:column;gap:40px;border
     el.innerHTML = `
       <img class="gallery-item-img" src="${res(item.src)}" alt="${item.label}">
       <div class="gallery-item-overlay"></div>
-      <div class="gallery-item-hint"><span>View</span></div>
       <div class="gallery-item-info">
         <div class="gallery-item-label" style="color:${C.cream}">${item.label}</div>
         <div class="gallery-item-sub" style="color:${C.muted}">${item.sub}</div>
