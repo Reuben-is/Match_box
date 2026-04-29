@@ -186,28 +186,44 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 .work-title{font-family:'Playfair Display',serif;font-size:48px;font-weight:400;margin-bottom:12px;}
 .work-sub{font-size:11px;letter-spacing:0.2em;text-transform:uppercase;}
 
-.gallery-strip{display:flex;gap:0;max-width:1400px;margin:0 auto;overflow:hidden;}
-.gallery-item{flex:1;position:relative;overflow:hidden;cursor:pointer;transition:flex 0.55s cubic-bezier(0.4,0,0.2,1) 0.05s;}
-.gallery-item:hover:not(.expanded){flex:1.35;transition-delay:0s;}
-.gallery-item.expanded{flex:2.8;transition-delay:0s;}
-.gallery-item-img{width:100%;height:75vh;object-fit:cover;filter:saturate(0.7) contrast(1.1);display:block;transition:filter 0.4s;}
-.gallery-item.expanded .gallery-item-img{filter:saturate(0.85) contrast(1.05);}
-.gallery-item-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(13,15,14,0.92) 0%,rgba(13,15,14,0.1) 50%,transparent 100%);opacity:0;transition:opacity 0.4s;pointer-events:none;}
-.gallery-item.expanded .gallery-item-overlay{opacity:1;}
-.gallery-item-info{position:absolute;bottom:0;left:0;right:0;padding:40px 32px;transform:translateY(12px);opacity:0;transition:opacity 0.4s,transform 0.4s;}
-.gallery-item.expanded .gallery-item-info{opacity:1;transform:translateY(0);}
-.gallery-item-label{font-family:'Playfair Display',serif;font-size:22px;font-weight:400;margin-bottom:6px;}
-.gallery-item-sub{font-size:10px;letter-spacing:0.2em;text-transform:uppercase;margin-bottom:14px;}
-.gallery-item-desc{font-size:13px;line-height:1.8;max-width:320px;}
-.gallery-item-divider{width:32px;height:0.5px;margin-bottom:14px;opacity:0.4;}
+.gallery-wrap{position:relative;max-width:1400px;margin:0 auto;user-select:none;}
+.gallery-track-outer{overflow:hidden;cursor:pointer;}
+.gallery-track{display:flex;transition:transform 0.7s cubic-bezier(0.25,0.1,0.25,1);}
+.gallery-slide{flex-shrink:0;width:33.333%;padding:0 8px;box-sizing:border-box;}
+.gallery-slide-inner{position:relative;overflow:hidden;}
+.gallery-slide img{width:100%;aspect-ratio:3/4;object-fit:cover;filter:saturate(0.7) contrast(1.1);display:block;transition:filter 0.4s,transform 0.5s cubic-bezier(0.4,0,0.2,1);}
+.gallery-slide-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(13,15,14,0.92) 0%,rgba(13,15,14,0.15) 55%,transparent 100%);opacity:0;transition:opacity 0.4s;pointer-events:none;}
+.gallery-slide-info{position:absolute;bottom:0;left:0;right:0;padding:32px 28px;transform:translateY(10px);opacity:0;transition:opacity 0.4s,transform 0.4s;pointer-events:none;}
+.gallery-slide-label{font-family:'Playfair Display',serif;font-size:20px;font-weight:400;margin-bottom:5px;}
+.gallery-slide-sub{font-size:10px;letter-spacing:0.18em;text-transform:uppercase;margin-bottom:14px;}
+.gallery-slide-divider{width:28px;height:0.5px;margin-bottom:12px;opacity:0.4;}
+.gallery-slide-desc{font-size:13px;line-height:1.8;max-width:280px;}
+
+/* LIGHTBOX */
+.lightbox{position:fixed;inset:0;z-index:500;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity 0.4s ease;}
+.lightbox.open{opacity:1;pointer-events:auto;}
+.lightbox-scrim{position:absolute;inset:0;background:rgba(13,15,14,0.92);backdrop-filter:blur(8px);}
+.lightbox-content{position:relative;z-index:1;display:grid;grid-template-columns:auto 1fr;gap:56px;align-items:center;max-width:1000px;width:90%;transform:translateY(20px);transition:transform 0.4s cubic-bezier(0.4,0,0.2,1);}
+.lightbox.open .lightbox-content{transform:translateY(0);}
+.lightbox-img-wrap{position:relative;width:360px;flex-shrink:0;}
+.lightbox-img-wrap img{width:100%;aspect-ratio:3/4;object-fit:cover;filter:saturate(0.85) contrast(1.05);display:block;}
+.lightbox-text{display:flex;flex-direction:column;gap:16px;}
+.lightbox-label{font-family:'Playfair Display',serif;font-size:36px;font-weight:400;line-height:1.1;}
+.lightbox-label em{font-style:italic;}
+.lightbox-sub{font-size:10px;letter-spacing:0.22em;text-transform:uppercase;}
+.lightbox-rule{width:40px;height:0.5px;opacity:0.3;}
+.lightbox-desc{font-size:14px;line-height:1.9;max-width:340px;}
+.lightbox-close{position:absolute;top:32px;right:32px;width:44px;height:44px;border:0.5px solid rgba(200,205,208,0.2);background:none;cursor:pointer;font-size:18px;display:flex;align-items:center;justify-content:center;transition:border-color 0.2s;z-index:2;}
+.lightbox-close:hover{border-color:rgba(200,205,208,0.5);}
+
+.gallery-controls{display:flex;justify-content:center;gap:8px;margin-top:36px;}
+.gallery-dot{width:6px;height:6px;border-radius:4px;border:none;cursor:pointer;transition:all 0.3s;}
 
 @media(max-width:768px){
-  .work{padding:80px 0;}
-  .gallery-strip{flex-direction:column;gap:2px;}
-  .gallery-item{flex:none!important;}
-  .gallery-item-img{height:60vw;}
-  .gallery-item-overlay{opacity:1;}
-  .gallery-item-info{opacity:1;transform:none;}
+  .work{padding:80px 16px;}
+  .gallery-slide{width:85%;}
+  .lightbox-content{grid-template-columns:1fr;gap:32px;}
+  .lightbox-img-wrap{width:100%;}
 }
 
 /* PRICING SECTION */
@@ -333,8 +349,28 @@ footer{padding:64px 48px 48px;display:flex;flex-direction:column;gap:40px;border
 
 <section class="work" id="work">
   <div class="work-header" id="work-header"></div>
-  <div class="gallery-strip" id="gallery-strip"></div>
+  <div class="gallery-wrap">
+    <div class="gallery-track-outer" id="gallery-track-outer">
+      <div class="gallery-track" id="gallery-track"></div>
+    </div>
+    <div class="gallery-controls" id="gallery-dots"></div>
+  </div>
 </section>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox">
+  <div class="lightbox-scrim" id="lightbox-scrim"></div>
+  <button class="lightbox-close" id="lightbox-close" aria-label="Close">✕</button>
+  <div class="lightbox-content">
+    <div class="lightbox-img-wrap"><img id="lightbox-img" src="" alt=""></div>
+    <div class="lightbox-text">
+      <div class="lightbox-label" id="lightbox-label"></div>
+      <div class="lightbox-sub" id="lightbox-sub"></div>
+      <div class="lightbox-rule" id="lightbox-rule"></div>
+      <div class="lightbox-desc" id="lightbox-desc"></div>
+    </div>
+  </div>
+</div>
 
 <section class="pricing" id="pricing">
   <div class="pricing-header" id="pricing-header"></div>
@@ -465,38 +501,108 @@ footer{padding:64px 48px 48px;display:flex;flex-direction:column;gap:40px;border
     <h2 class="work-title" style="color:${C.cream}">${S.gallery.sectionTitle}</h2>
     <span class="work-sub" style="color:${C.muted}">${S.gallery.sectionSub}</span>`;
 
-  const strip = document.getElementById("gallery-strip");
-  let expandedIndex = null;
+  const track      = document.getElementById("gallery-track");
+  const dotsEl     = document.getElementById("gallery-dots");
+  const trackOuter = document.getElementById("gallery-track-outer");
+  const items      = S.gallery.items;
+  const perPage    = 3;
+  const maxIdx     = items.length - perPage;
 
-  S.gallery.items.forEach((item, i) => {
-    const el = document.createElement("div");
-    el.className = "gallery-item";
-    el.innerHTML = `
-      <img class="gallery-item-img" src="${res(item.src)}" alt="${item.label}">
-      <div class="gallery-item-overlay"></div>
-      <div class="gallery-item-info">
-        <div class="gallery-item-label" style="color:${C.cream}">${item.label}</div>
-        <div class="gallery-item-sub" style="color:${C.muted}">${item.sub}</div>
-        <div class="gallery-item-divider" style="background:${C.accent}"></div>
-        <div class="gallery-item-desc" style="color:${C.silver}">${item.desc}</div>
+  // Lightbox elements
+  const lightbox  = document.getElementById("lightbox");
+  const lbImg     = document.getElementById("lightbox-img");
+  const lbLabel   = document.getElementById("lightbox-label");
+  const lbSub     = document.getElementById("lightbox-sub");
+  const lbRule    = document.getElementById("lightbox-rule");
+  const lbDesc    = document.getElementById("lightbox-desc");
+  lbLabel.style.color = C.cream;
+  lbSub.style.color   = C.muted;
+  lbRule.style.background = C.accent;
+  lbDesc.style.color  = C.silver;
+  document.getElementById("lightbox-close").style.color = C.cream;
+
+  function openLightbox(item) {
+    lbImg.src       = res(item.src);
+    lbImg.alt       = item.label;
+    lbLabel.innerHTML = item.label;
+    lbSub.textContent = item.sub;
+    lbDesc.textContent = item.desc;
+    lightbox.classList.add("open");
+    document.body.style.overflow = "hidden";
+  }
+  function closeLightbox() {
+    lightbox.classList.remove("open");
+    document.body.style.overflow = "";
+  }
+  document.getElementById("lightbox-close").onclick = closeLightbox;
+  document.getElementById("lightbox-scrim").onclick = closeLightbox;
+  document.addEventListener("keydown", e => { if (e.key === "Escape") closeLightbox(); });
+
+  // Build slides
+  items.forEach((item) => {
+    const slide = document.createElement("div");
+    slide.className = "gallery-slide";
+    slide.innerHTML = `
+      <div class="gallery-slide-inner">
+        <img src="${res(item.src)}" alt="${item.label}">
+        <div class="gallery-slide-overlay"></div>
+        <div class="gallery-slide-info">
+          <div class="gallery-slide-label" style="color:${C.cream}">${item.label}</div>
+          <div class="gallery-slide-sub" style="color:${C.muted}">${item.sub}</div>
+        </div>
       </div>`;
-
-    el.addEventListener("click", () => {
-      if (expandedIndex === i) {
-        el.classList.remove("expanded");
-        expandedIndex = null;
-      } else {
-        if (expandedIndex !== null) {
-          strip.children[expandedIndex].classList.remove("expanded");
-        }
-        el.classList.add("expanded");
-        expandedIndex = i;
-      }
-    });
-
-    strip.appendChild(el);
+    slide.addEventListener("click", () => openLightbox(item));
+    track.appendChild(slide);
   });
 
+  // Dots
+  for (let i = 0; i <= maxIdx; i++) {
+    const dot = document.createElement("button");
+    dot.className = "gallery-dot";
+    dot.style.background = i === 0 ? C.accent : C.muted + "55";
+    dot.onclick = () => goTo(i);
+    dotsEl.appendChild(dot);
+  }
+
+  function goTo(idx) {
+    const slideW = trackOuter.clientWidth / perPage;
+    track.style.transform = `translateX(-${Math.max(0, Math.min(idx, maxIdx)) * slideW}px)`;
+    [...dotsEl.children].forEach((d, i) => {
+      const active = i === Math.round(idx);
+      d.style.background = active ? C.accent : C.muted + "55";
+      d.style.width = active ? "20px" : "6px";
+    });
+  }
+
+  // Hover navigation
+  let hoverTarget = 0;
+  let smoothCurrent = 0;
+  let rafId = null;
+
+  trackOuter.addEventListener("mousemove", e => {
+    const rect = trackOuter.getBoundingClientRect();
+    hoverTarget = (e.clientX - rect.left) / rect.width * maxIdx;
+    if (!rafId) rafId = requestAnimationFrame(animateScroll);
+  });
+  trackOuter.addEventListener("mouseleave", () => {
+    cancelAnimationFrame(rafId);
+    rafId = null;
+  });
+
+  function animateScroll() {
+    smoothCurrent += (hoverTarget - smoothCurrent) * 0.06;
+    const slideW = trackOuter.clientWidth / perPage;
+    track.style.transform = `translateX(-${smoothCurrent * slideW}px)`;
+    [...dotsEl.children].forEach((d, i) => {
+      const active = i === Math.round(smoothCurrent);
+      d.style.background = active ? C.accent : C.muted + "55";
+      d.style.width = active ? "20px" : "6px";
+    });
+    rafId = requestAnimationFrame(animateScroll);
+  }
+
+  window.addEventListener("resize", () => goTo(0));
+  goTo(0);
   // PRICING SECTION
   document.getElementById("pricing").style.background = C.background;
   document.getElementById("pricing").style.borderTop = `1px solid rgba(200,205,208,0.06)`;
