@@ -187,13 +187,18 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 .work-sub{font-size:11px;letter-spacing:0.2em;text-transform:uppercase;}
 
 .gallery-strip{display:flex;gap:0;max-width:1400px;margin:0 auto;overflow:hidden;}
-.gallery-item{flex:1;position:relative;overflow:hidden;transition:flex 0.6s cubic-bezier(0.4,0,0.2,1);}
+.gallery-item{flex:1;position:relative;overflow:hidden;cursor:pointer;transition:flex 0.6s cubic-bezier(0.4,0,0.2,1);}
 .gallery-item.expanded{flex:2.8;}
-.gallery-item-img{width:100%;height:75vh;object-fit:cover;filter:saturate(0.7) contrast(1.1);display:block;transition:filter 0.4s;}
+.gallery-item-img{width:100%;height:75vh;object-fit:cover;filter:saturate(0.7) contrast(1.1);display:block;transition:filter 0.4s,transform 0.5s cubic-bezier(0.4,0,0.2,1);}
+.gallery-item:hover:not(.expanded) .gallery-item-img{filter:saturate(0.85) contrast(1.08);transform:scale(1.04);}
 .gallery-item.expanded .gallery-item-img{filter:saturate(0.85) contrast(1.05);}
 .gallery-item-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(13,15,14,0.92) 0%,rgba(13,15,14,0.1) 50%,transparent 100%);opacity:0;transition:opacity 0.4s;pointer-events:none;}
+.gallery-item:hover:not(.expanded) .gallery-item-overlay{opacity:0.5;}
 .gallery-item.expanded .gallery-item-overlay{opacity:1;}
-.gallery-item-info{position:absolute;bottom:0;left:0;right:0;padding:40px 32px;transform:translateY(12px);opacity:0;transition:opacity 0.4s, transform 0.4s;}
+.gallery-item-hint{position:absolute;bottom:28px;left:0;right:0;display:flex;justify-content:center;opacity:0;transform:translateY(8px);transition:opacity 0.3s,transform 0.3s;pointer-events:none;}
+.gallery-item-hint span{font-size:9px;letter-spacing:0.22em;text-transform:uppercase;padding:7px 16px;border:0.5px solid rgba(200,205,208,0.3);color:rgba(240,236,228,0.85);background:rgba(13,15,14,0.5);backdrop-filter:blur(6px);}
+.gallery-item:hover:not(.expanded) .gallery-item-hint{opacity:1;transform:translateY(0);}
+.gallery-item-info{position:absolute;bottom:0;left:0;right:0;padding:40px 32px;transform:translateY(12px);opacity:0;transition:opacity 0.4s,transform 0.4s;}
 .gallery-item.expanded .gallery-item-info{opacity:1;transform:translateY(0);}
 .gallery-item-label{font-family:'Playfair Display',serif;font-size:22px;font-weight:400;margin-bottom:6px;}
 .gallery-item-sub{font-size:10px;letter-spacing:0.2em;text-transform:uppercase;margin-bottom:14px;}
@@ -235,13 +240,20 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
   .pricing-card.featured{transform:none;}
 }
 
-.process{padding:120px 48px;}
-.process-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:80px;max-width:1400px;margin-left:auto;margin-right:auto;gap:60px;}
+.process{padding:120px 48px;position:relative;overflow:hidden;}
+.process::before{content:'';position:absolute;inset:0;pointer-events:none;
+  background:
+    radial-gradient(ellipse 70% 55% at 10% 60%, rgba(107,26,26,0.09) 0%, transparent 65%),
+    radial-gradient(ellipse 50% 70% at 90% 15%, rgba(200,205,208,0.04) 0%, transparent 55%),
+    radial-gradient(ellipse 40% 40% at 55% 90%, rgba(107,26,26,0.05) 0%, transparent 60%);}
+.process::after{content:'';position:absolute;top:0;left:10%;right:10%;height:1px;pointer-events:none;
+  background:linear-gradient(to right, transparent, rgba(107,26,26,0.4) 30%, rgba(107,26,26,0.4) 70%, transparent);}
+.process-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:80px;max-width:1400px;margin-left:auto;margin-right:auto;gap:60px;position:relative;z-index:1;}
 .process-eyebrow{font-size:10px;letter-spacing:0.28em;text-transform:uppercase;margin-bottom:16px;}
 .process-title{font-family:'Playfair Display',serif;font-size:48px;font-weight:400;line-height:1.15;}
 .process-subtitle{font-size:14px;line-height:1.9;max-width:320px;margin-top:8px;}
 
-.process-steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:48px;max-width:1400px;margin:0 auto;}
+.process-steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:48px;max-width:1400px;margin:0 auto;position:relative;z-index:1;}
 .process-step{display:flex;flex-direction:column;gap:24px;}
 .process-step-img{position:relative;aspect-ratio:4/5;overflow:hidden;border-radius:2px;}
 .process-step-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:saturate(0.65) contrast(1.15);}
@@ -466,6 +478,7 @@ footer{padding:64px 48px 48px;display:flex;flex-direction:column;gap:40px;border
     el.innerHTML = `
       <img class="gallery-item-img" src="${res(item.src)}" alt="${item.label}">
       <div class="gallery-item-overlay"></div>
+      <div class="gallery-item-hint"><span>View</span></div>
       <div class="gallery-item-info">
         <div class="gallery-item-label" style="color:${C.cream}">${item.label}</div>
         <div class="gallery-item-sub" style="color:${C.muted}">${item.sub}</div>
@@ -490,7 +503,9 @@ footer{padding:64px 48px 48px;display:flex;flex-direction:column;gap:40px;border
   });
 
   // PRICING SECTION
-  document.getElementById("pricing").style.background = C.backgroundAlt;
+  document.getElementById("pricing").style.background = C.background;
+  document.getElementById("pricing").style.borderTop = `1px solid rgba(200,205,208,0.06)`;
+  document.getElementById("pricing").style.borderBottom = `1px solid rgba(200,205,208,0.06)`;
   document.getElementById("pricing-header").innerHTML = `
     <div class="pricing-eyebrow" style="color:${C.silver}">${S.pricing.label}</div>
     <h2 class="pricing-title" style="color:${C.cream}">${S.pricing.title1} <em style="color:${C.silver}">${S.pricing.titleEm}</em></h2>
