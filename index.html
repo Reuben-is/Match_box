@@ -572,7 +572,8 @@ footer{padding:64px 48px 48px;display:flex;flex-direction:column;gap:40px;border
   });
 
   // Dots
-  for (let i = 0; i <= maxIdx; i++) {
+  const dotCount = window.innerWidth <= 768 ? items.length : maxIdx + 1;
+  for (let i = 0; i < dotCount; i++) {
     const dot = document.createElement("button");
     dot.className = "gallery-dot";
     dot.style.background = i === 0 ? C.accent : C.muted + "55";
@@ -581,16 +582,61 @@ footer{padding:64px 48px 48px;display:flex;flex-direction:column;gap:40px;border
   }
 
   function goTo(idx) {
-    const slideW = trackOuter.clientWidth / perPage;
-    track.style.transform = `translateX(-${Math.max(0, Math.min(idx, maxIdx)) * slideW}px)`;
+    const perPageNow = window.innerWidth <= 768 ? 1 : perPage;
+    const mIdx = items.length - perPageNow;
+    const clamped = Math.max(0, Math.min(idx, mIdx));
+    smoothCurrent = clamped;
+    const slideW = trackOuter.clientWidth / perPageNow;
+    track.style.transform = `translateX(-${clamped * slideW}px)`;
     [...dotsEl.children].forEach((d, i) => {
-      const active = i === Math.round(idx);
+      const active = i === clamped;
       d.style.background = active ? C.accent : C.muted + "55";
       d.style.width = active ? "20px" : "6px";
     });
   }
 
-  // Hover navigation
+  // Touch swipe support
+  let touchStartX = 0;
+  let touchStartY = 0;
+  let touchDeltaX = 0;
+  let isSwiping = false;
+
+  trackOuter.addEventListener("touchstart", e => {
+    touchStartX = e.touches[0].clientX;
+    touchStartY = e.touches[0].clientY;
+    touchDeltaX = 0;
+    isSwiping = false;
+    track.style.transition = "none";
+  }, { passive: true });
+
+  trackOuter.addEventListener("touchmove", e => {
+    const dx = e.touches[0].clientX - touchStartX;
+    const dy = e.touches[0].clientY - touchStartY;
+    if (!isSwiping && Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 6) {
+      isSwiping = true;
+    }
+    if (isSwiping) {
+      touchDeltaX = dx;
+      const perPageNow = window.innerWidth <= 768 ? 1 : perPage;
+      const slideW = trackOuter.clientWidth / perPageNow;
+      track.style.transform = `translateX(${-smoothCurrent * slideW + touchDeltaX}px)`;
+    }
+  }, { passive: true });
+
+  trackOuter.addEventListener("touchend", () => {
+    track.style.transition = "";
+    if (isSwiping && Math.abs(touchDeltaX) > 50) {
+      const perPageNow = window.innerWidth <= 768 ? 1 : perPage;
+      const mIdx = items.length - perPageNow;
+      if (touchDeltaX < 0) goTo(Math.min(Math.round(smoothCurrent) + 1, mIdx));
+      else goTo(Math.max(Math.round(smoothCurrent) - 1, 0));
+    } else {
+      goTo(Math.round(smoothCurrent));
+    }
+    isSwiping = false;
+  });
+
+  // Hover navigation (desktop only)
   let hoverTarget = 0;
   let smoothCurrent = 0;
   let rafId = null;
@@ -607,7 +653,8 @@ footer{padding:64px 48px 48px;display:flex;flex-direction:column;gap:40px;border
 
   function animateScroll() {
     smoothCurrent += (hoverTarget - smoothCurrent) * 0.06;
-    const slideW = trackOuter.clientWidth / perPage;
+    const perPageNow = window.innerWidth <= 768 ? 1 : perPage;
+    const slideW = trackOuter.clientWidth / perPageNow;
     track.style.transform = `translateX(-${smoothCurrent * slideW}px)`;
     [...dotsEl.children].forEach((d, i) => {
       const active = i === Math.round(smoothCurrent);
